@@ -1,84 +1,236 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
- */
 package unit14_randomdice;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author tgibbons
- */
 public class Unit14_RandomDiceTest {
-    
-    public Unit14_RandomDiceTest() {
-    }
 
-    /**
-     * Test of main method, of class Unit14_RandomDice.
+    /** =========================================================
+     *  Test fillArrayWithRandomValues() method
+     ** =========================================================
      */
-    @Test
-    public void testMain() {
-        System.out.println("main");
-        String[] args = null;
-        Unit14_RandomDice.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
-    /**
-     * Test of fillArrayWithRandomValues method, of class Unit14_RandomDice.
-     */
     @Test
-    public void testFillArrayWithRandomValues() {
-        System.out.println("fillArrayWithRandomValues");
-        int[] array = null;
-        int numSides = 0;
+    public void testFillArrayWithRandomValuesWithPositiveNumSides() {
+        // Arrange
+        int[] array = new int[1000];
+        int numSides = 10;
+
+        // Act
         Unit14_RandomDice.fillArrayWithRandomValues(array, numSides);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
+        // Assert
+        for (int value : array) {
+            assertTrue(value >= 1 && value <= numSides);
+        }
     }
 
-    /**
-     * Test of printArrayValues method, of class Unit14_RandomDice.
-     */
     @Test
-    public void testPrintArrayValues() {
-        System.out.println("printArrayValues");
-        int[] array = null;
-        Unit14_RandomDice.printArrayValues(array);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testFillArrayWithRandomValuesWithOneNumSides() {
+        // Arrange
+        int[] array = new int[5];
+        int numSides = 1;
+
+        // Act
+        Unit14_RandomDice.fillArrayWithRandomValues(array, numSides);
+
+        // Assert
+        for (int value : array) {
+            assertEquals(numSides, value);
+        }
     }
 
-    /**
-     * Test of calculateSum method, of class Unit14_RandomDice.
-     */
     @Test
-    public void testCalculateSum() {
-        System.out.println("calculateSum");
-        int[] array = null;
-        int expResult = 0;
-        int result = Unit14_RandomDice.calculateSum(array);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testFillArrayWithRandomValuesWithSingleElement() {
+        // Arrange
+        int[] array = new int[1];
+        int numSides = 6;
+
+        // Act
+        Unit14_RandomDice.fillArrayWithRandomValues(array, numSides);
+
+        // Assert
+        assertTrue(array[0] >= 1 && array[0] <= numSides);
     }
 
-    /**
-     * Test of findHighestValue method, of class Unit14_RandomDice.
-     */
     @Test
-    public void testFindHighestValue() {
-        System.out.println("findHighestValue");
-        int[] array = null;
-        int expResult = 0;
-        int result = Unit14_RandomDice.findHighestValue(array);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testFillArrayWithRandomValuesWithLargeNumSides() {
+        // Arrange
+        int[] array = new int[10];
+        int numSides = 1000;
+
+        // Act
+        Unit14_RandomDice.fillArrayWithRandomValues(array, numSides);
+
+        // Assert
+        for (int value : array) {
+            assertTrue(value >= 1 && value <= numSides);
+        }
+    }
+
+    /** =========================================================
+     *  Test calculateSum() method
+     ** =========================================================
+     */
+
+    @Test
+    public void testCalculateSumWithPositiveValues() {
+        // Arrange
+        int[] diceValues = {3, 5, 2, 4, 1};
+        int expectedSum = 15;
+
+        // Act
+        int actualSum = Unit14_RandomDice.calculateSum(diceValues);
+
+        // Assert
+        assertEquals(expectedSum, actualSum);
+    }
+
+    @Test
+    public void testCalculateSumWithNegativeValues() {
+        // Arrange
+        int[] diceValues = {-2, -4, -1, -5};
+        int expectedSum = -12;
+
+        // Act
+        int actualSum = Unit14_RandomDice.calculateSum(diceValues);
+
+        // Assert
+        assertEquals(expectedSum, actualSum);
+    }
+
+    @Test
+    public void testCalculateSumWithZeroValues() {
+        // Arrange
+        int[] diceValues = {0, 0, 0, 0};
+        int expectedSum = 0;
+
+        // Act
+        int actualSum = Unit14_RandomDice.calculateSum(diceValues);
+
+        // Assert
+        assertEquals(expectedSum, actualSum);
+    }
+
+    @Test
+    public void testCalculateSumWithSingleValue() {
+        // Arrange
+        int[] diceValues = {7};
+        int expectedSum = 7;
+
+        // Act
+        int actualSum = Unit14_RandomDice.calculateSum(diceValues);
+
+        // Assert
+        assertEquals(expectedSum, actualSum);
+    }
+
+    @Test
+    public void testCalculateSumWithEmptyArray() {
+        // Arrange
+        int[] diceValues = {};
+        int expectedSum = 0;
+
+        // Act
+        int actualSum = Unit14_RandomDice.calculateSum(diceValues);
+
+        // Assert
+        assertEquals(expectedSum, actualSum);
+    }
+
+    /** =========================================================
+     *  Test findHighestValue() method
+     ** =========================================================
+     */
+
+    @Test
+    public void testFindHighestValueWithPostionOne() {
+        // Arrange
+        int[] diceValues = {5, 3, 2, 4, 1};
+        int expectedHighest = 5;
+
+        // Act
+        int actualHighest = Unit14_RandomDice.findHighestValue(diceValues);
+
+        // Assert
+        assertEquals(expectedHighest, actualHighest);
     }
     
+    @Test
+    public void testFindHighestValueWithPostionTwo() {
+        // Arrange
+        int[] diceValues = {3, 5, 2, 4, 1};
+        int expectedHighest = 5;
+
+        // Act
+        int actualHighest = Unit14_RandomDice.findHighestValue(diceValues);
+
+        // Assert
+        assertEquals(expectedHighest, actualHighest);
+    }
+    
+    @Test
+    public void testFindHighestValueWithPostionThree() {
+        // Arrange
+        int[] diceValues = {3, 2, 5, 4, 1};
+        int expectedHighest = 5;
+
+        // Act
+        int actualHighest = Unit14_RandomDice.findHighestValue(diceValues);
+
+        // Assert
+        assertEquals(expectedHighest, actualHighest);
+    }    
+    
+    @Test
+    public void testFindHighestValueWithPostionFour() {
+        // Arrange
+        int[] diceValues = {3, 4, 2, 5, 1};
+        int expectedHighest = 5;
+
+        // Act
+        int actualHighest = Unit14_RandomDice.findHighestValue(diceValues);
+
+        // Assert
+        assertEquals(expectedHighest, actualHighest);
+    }    
+
+    @Test
+    public void testFindHighestValueWithPostionFive() {
+        // Arrange
+        int[] diceValues = {3, 4, 2, 1, 5};
+        int expectedHighest = 5;
+
+        // Act
+        int actualHighest = Unit14_RandomDice.findHighestValue(diceValues);
+
+        // Assert
+        assertEquals(expectedHighest, actualHighest);
+    }
+    
+    @Test
+    public void testFindHighestValueWithNegativeValues() {
+        // Arrange
+        int[] diceValues = {-2, -4, -1, -5};
+        int expectedHighest = -1;
+
+        // Act
+        int actualHighest = Unit14_RandomDice.findHighestValue(diceValues);
+
+        // Assert
+        assertEquals(expectedHighest, actualHighest);
+    }
+
+    @Test
+    public void testFindHighestValueWithZeroValues() {
+        // Arrange
+        int[] diceValues = {0, 0, 0, 0};
+        int expectedHighest = 0;
+
+        // Act
+        int actualHighest = Unit14_RandomDice.findHighestValue(diceValues);
+
+        // Assert
+        assertEquals(expectedHighest, actualHighest);
+    }
 }

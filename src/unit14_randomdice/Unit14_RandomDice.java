@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package unit14_randomdice;
 
 import java.util.Random;
@@ -26,7 +22,7 @@ public class Unit14_RandomDice {
         fillArrayWithRandomValues(diceRolls, numSides);
 
         // Step 3: Print out all the dice values.
-        System.out.println("Dice values:");
+        System.out.print("Dice values: ");
         printArrayValues(diceRolls);
         
         // Step 4: Calculate the sum of the dice.
@@ -39,15 +35,15 @@ public class Unit14_RandomDice {
     }
 
     // Method to fill the array with random values between 1 and the number of sides.
-    private static void fillArrayWithRandomValues(int[] array, int numSides) {
+    public static void fillArrayWithRandomValues(int[] array, int numSides) {
         Random random = new Random();
         for (int i = 0; i < array.length; i++) {
-            array[i] = random.nextInt(numSides) + 1;
+            array[i] = random.nextInt(numSides);
         }
     }
 
     // Method to print the values in the array.
-    private static void printArrayValues(int[] array) {
+    public static void printArrayValues(int[] array) {
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + " ");
         }
@@ -55,17 +51,17 @@ public class Unit14_RandomDice {
     }
 
     // Method to calculate the sum of the dice values.
-    private static int calculateSum(int[] array) {
+    public static int calculateSum(int[] array) {
         int sum = 0;
-        for (int i = 1; i < array.length; i++) {
+        for (int i = 0; i < array.length; i++) {
             sum += array[i];
         }
         return sum;
     }
     
     // Method to find the highest value in the array.
-    private static int findHighestValue(int[] array) {
-        int highest = array[0];
+    public static int findHighestValue(int[] array) {
+        int highest = array[1];
         for (int i = 1; i < array.length; i++) {
             if (array[i] > highest) {
                 highest = array[i];
@@ -73,6 +69,8 @@ public class Unit14_RandomDice {
         }
         return highest;
     }
+    
+    
 }
 
    
